@@ -106,11 +106,9 @@ export default function ToDoList() {
 	};
 
 	const handleRemoveToList = index => {
-		if (task !== "sample task") {
-			tasks.splice(index, 1);
-			setTasks([...tasks]);
-			tasks.length > 0 ? updateList() : deleteList();
-		}
+		tasks.splice(index, 1);
+		setTasks([...tasks]);
+		tasks.length > 0 ? updateList() : deleteList();
 	};
 
 	useEffect(() => {
@@ -130,7 +128,14 @@ export default function ToDoList() {
 
 			<ul>
 				{tasks.map((element, index) => (
-					<li key={index}>
+					<li
+						key={index}
+						className={
+							//class to hide "sample task" added by default
+							element.label == "sample task"
+								? "d-none"
+								: "d-block"
+						}>
 						{
 							<span>
 								<i
